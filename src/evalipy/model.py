@@ -3,7 +3,7 @@ from joblib import load
 
 
 class Model:
-    def __init__(self, model, model_type = None, path=None) -> None:
+    def __init__(self, model, model_type=None, path=None) -> None:
         self.path = path
         self.model = self.load_model() if model is None else model
         self.model_type = type(self.model)
