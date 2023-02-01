@@ -1,4 +1,4 @@
-from evalipy.src.evalipy import model, comparator, report
+from evalipy.evalipy import model, report, comparator
 from sklearn import svm
 from sklearn.tree import DecisionTreeRegressor
 from sklearn import datasets

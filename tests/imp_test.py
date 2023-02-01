@@ -1,7 +1,9 @@
-from evalipy.src.evalipy import model, metrics, report
+from evalipy.evalipy import model, report
 import pickle
 from sklearn import svm
 from sklearn import datasets
+
+
 
 clf = svm.SVC()
 X, y = datasets.load_iris(return_X_y=True)

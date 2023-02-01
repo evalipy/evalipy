@@ -1,4 +1,4 @@
-from evalipy.src.evalipy import Model
+from evalipy.evalipy import Model
 from sklearn import svm
 from sklearn.tree import DecisionTreeRegressor
 from sklearn import datasets
