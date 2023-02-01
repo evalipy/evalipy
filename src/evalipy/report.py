@@ -10,8 +10,9 @@ class Report:
         self.model = model
         self.actual_data = actual_data
         self.predicted_data = predicted_data
+        self.report = self.__generate_report()
 
-    def __repr__(self) -> pd.DataFrame:
+    def __generate_report(self):
         return pd.DataFrame.from_dict(
             {"Mean Squared Error(MSE)": Metrics.MSE(self.actual_data, self.predicted_data),
              "Mean Absolute Error(MAE)": Metrics.MAE(self.actual_data, self.predicted_data),
@@ -20,3 +21,9 @@ class Report:
              "Root Relative Squared Error(RRSE)": Metrics.RRSE(self.actual_data, self.predicted_data),
              "Relative Absolute Error(RAE)": Metrics.RAE(self.actual_data, self.predicted_data),
              }, orient='index', columns=['value'])
+
+    def __str__(self) -> str:
+        return self.report.__repr__()
+
+    def __repr__(self) -> pd.DataFrame:
+        return self.report
