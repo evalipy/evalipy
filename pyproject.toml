@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "evalipy"
-version = "0.0.1"
+version = "0.0.4"
 description = "Evalipy is a framework for evaluating & comparing machine learning models."
 readme = "README.MD"
 authors = [{ name = "Mehrdad Heshmat", email = "mehrddy@gmail.com" }]
@@ -17,13 +17,13 @@ classifiers = [
 ]
 keywords = ["ML", "Machine Learning", "model", "evaluation", "framework"]
 dependencies = [
-'joblib>=1.2.0',
-'matplotlib>=3.6.2',
-'numpy>=1.24.1',
-'pandas>=1.5.2',
-'scikit-learn>=1.2.0',
-'scipy>=1.10.0',
-'seaborn>=0.12.2',
+'joblib',
+'matplotlib',
+'numpy',
+'pandas',
+'scikit-learn',
+'scipy',
+'seaborn',
 ]
 requires-python = ">=3.8"
 

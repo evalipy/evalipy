@@ -13,8 +13,8 @@ class Comparator:
 
     def __res(self):
         return pd.concat(
-            [Report(self.model_A, self.actual_data, self.predicted_data_A, model_identifier='model A').__repr__(),
-             Report(self.model_B, self.actual_data, self.predicted_data_B, model_identifier='model B').__repr__()],
+            [Report(self.model_A, self.actual_data, self.predicted_data_A, model_identifier='model A').report,
+             Report(self.model_B, self.actual_data, self.predicted_data_B, model_identifier='model B').report],
             axis=1,
             ignore_index=False)
 
@@ -22,4 +22,4 @@ class Comparator:
         return self.result.__repr__()
 
     def __repr__(self):
-        return self.result
+        return self.result.__repr__()

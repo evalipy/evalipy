@@ -26,5 +26,7 @@ class Report:
     def __str__(self) -> str:
         return self.report.__repr__()
 
-    def __repr__(self) -> pd.DataFrame:
-        return self.report
+    def __repr__(self) -> str:
+        return self.report.__repr__()
+
+
