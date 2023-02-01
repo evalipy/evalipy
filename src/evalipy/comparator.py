@@ -1,5 +1,5 @@
 import pandas as pd
-from report import Report
+from .report import Report
 
 
 class Comparator:
@@ -9,7 +9,17 @@ class Comparator:
         self.actual_data = actual_data
         self.predicted_data_A = predicted_data_A
         self.predicted_data_B = predicted_data_B
+        self.result = self.__res()
+
+    def __res(self):
+        return pd.concat(
+            [Report(self.model_A, self.actual_data, self.predicted_data_A, model_identifier='model A').__repr__(),
+             Report(self.model_B, self.actual_data, self.predicted_data_B, model_identifier='model B').__repr__()],
+            axis=1,
+            ignore_index=False)
+
+    def __str__(self):
+        return self.result.__repr__()
 
     def __repr__(self):
-        return pd.concat([Report(self.model_A, self.actual_data, self.predicted_data_A).__repr__(),
-                   Report(self.model_B, self.actual_data, self.predicted_data_B).__repr__()], axis=0, ignore_index=True)
+        return self.result

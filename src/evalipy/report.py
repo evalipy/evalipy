@@ -6,10 +6,11 @@ from .model import Model
 
 
 class Report:
-    def __init__(self, model: Model, actual_data: np.ndarray, predicted_data: np.ndarray):
+    def __init__(self, model: Model, actual_data: np.ndarray, predicted_data: np.ndarray, model_identifier='model 1'):
         self.model = model
         self.actual_data = actual_data
         self.predicted_data = predicted_data
+        self.model_identifier = model_identifier
         self.report = self.__generate_report()
 
     def __generate_report(self):
@@ -20,7 +21,7 @@ class Report:
              "Root Mean Square Error(RMSE)": Metrics.RMSE(self.actual_data, self.predicted_data),
              "Root Relative Squared Error(RRSE)": Metrics.RRSE(self.actual_data, self.predicted_data),
              "Relative Absolute Error(RAE)": Metrics.RAE(self.actual_data, self.predicted_data),
-             }, orient='index', columns=['value'])
+             }, orient='index', columns=[f'{self.model_identifier}'])
 
     def __str__(self) -> str:
         return self.report.__repr__()
