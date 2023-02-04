@@ -35,9 +35,26 @@ class Metrics:
     def RAE(y_true, y_pred):
         return np.sum(np.abs(y_true - y_pred)) / (np.sum(np.abs(y_true - np.mean(y_true))) + Metrics.EPSILON)
 
+    @staticmethod
+    def NRMSE(y_true, y_pred):
+        return Metrics.RMSE(y_true, y_pred) / (y_true.max() - y_true.min())
+
+    @staticmethod
+    def ME(y_true, y_pred):
+        return np.mean(Metrics.error(y_true, y_pred))
+
+    @staticmethod
+    def MDAE(y_true, y_pred):
+        return np.median(np.abs(Metrics.error(y_true, y_pred)))
+
     ALL_METRICS = {"Mean Squared Error(MSE)": MSE,
                    "Mean Absolute Error(MAE)": MAE,
                    "R-Squared(R2)": R2,
                    "Root Mean Square Error(RMSE)": RMSE,
                    "Root Relative Squared Error(RRSE)": RRSE,
-                   "Relative Absolute Error(RAE)": RAE}
+                   "Relative Absolute Error(RAE)": RAE,
+                   "Normalized Root Mean Squared Error": NRMSE,
+                   "Mean Error": ME,
+                   "Median Absolute Error": MDAE,
+
+    }
