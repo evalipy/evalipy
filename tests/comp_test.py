@@ -2,12 +2,15 @@ from evalipy.evalipy import model, report, comparator
 from sklearn import svm
 from sklearn.tree import DecisionTreeRegressor
 from sklearn import datasets
+from sklearn.linear_model import LinearRegression
 
+line = LinearRegression()
 tree = DecisionTreeRegressor()
 clf = svm.SVC()
 X, y = datasets.load_iris(return_X_y=True)
 clf.fit(X, y)
 tree.fit(X, y)
+line.fit(X, y)
 
 y_pred_1 = clf.predict(X[0:1])
 y_pred_2 = tree.predict(X[0:1])
@@ -19,5 +22,5 @@ print(model_2)
 print(report.Report(model=model.Model(clf), actual_data=y, predicted_data=y_pred_1))
 print(report.Report(model=model.Model(tree), actual_data=y, predicted_data=y_pred_2))
 
-comparator = comparator.Comparator(models=[model_1, model_2], x=X, actual_data=y)
+comparator = comparator.Comparator(models=[line, clf], x=X, actual_data=y)
 print(comparator)

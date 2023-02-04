@@ -12,6 +12,12 @@ class Model:
 
         pass
 
+    @staticmethod
+    def to_model(model):
+        if type(model) is Model:
+            return model
+        return Model(model)
+
     def __repr__(self) -> str:
         return (f"path:{str(self.path)} "
                 f"type:{str(self.model_type)} "

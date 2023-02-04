@@ -6,7 +6,7 @@ from .report import Report
 
 class Comparator:
     def __init__(self, models: list[Model], x: ndarray, actual_data: ndarray) -> None:
-        self.models = models
+        self.models = [Model.to_model(i) for i in models]
         self.actual_data = actual_data
         self.x = x
         self.result = self.__res()

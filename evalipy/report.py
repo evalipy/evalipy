@@ -10,7 +10,7 @@ class Report:
                  model_identifier='model'):
         self.model = model
         self.actual_data = actual_data
-        self.predicted_data = predicted_data if (predicted_data is not None) and (x is None) else model.model.predict(x)
+        self.predicted_data = predicted_data if (predicted_data is not None) else model.model.predict(x)
         self.model_identifier = model_identifier
         self.report_DataFrame = self.__generate_report()
 
