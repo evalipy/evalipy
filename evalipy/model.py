@@ -8,6 +8,7 @@ class Model:
         self.model = self.load_model() if model is None else model
         self.model_type = type(self.model)
         self.parameters = self.model.get_params()
+
         pass
 
     def __repr__(self) -> str:

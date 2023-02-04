@@ -11,7 +11,7 @@ class Report:
         self.actual_data = actual_data
         self.predicted_data = predicted_data
         self.model_identifier = model_identifier
-        self.report = self.__generate_report()
+        self.report_DataFrame = self.__generate_report()
 
     def __generate_report(self):
         return pd.DataFrame.from_dict(
@@ -21,7 +21,7 @@ class Report:
             }, orient='index', columns=[f'{self.model_identifier}'])
 
     def __str__(self) -> str:
-        return self.report.__repr__()
+        return self.report_DataFrame.__repr__()
 
     def __repr__(self) -> str:
-        return self.report.__repr__()
+        return self.report_DataFrame.__repr__()
