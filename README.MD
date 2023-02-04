@@ -10,11 +10,11 @@ It's currently maintained by me :)
 * Python (>= 3.5)
 * NumPy (>= 1.17.3)
 * joblib (>= 1.1.1)
-* pandas
-* matplotlib
-* scikit-learn
-* scipy
-* seaborn
+* pandas (>= 1.5.0)
+* matplotlib (>= 3.6.2)
+* scikit-learn (>= 1.2.0)
+* scipy (>= 1.10.0)
+* seaborn (>= 0.12.2)
 
 ### Installation
 ```
