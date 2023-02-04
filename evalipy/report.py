@@ -6,10 +6,11 @@ from .model import Model
 
 
 class Report:
-    def __init__(self, model: Model, actual_data: np.ndarray, predicted_data: np.ndarray, model_identifier='model'):
+    def __init__(self, model: Model, actual_data: np.ndarray, predicted_data: np.ndarray, x=None,
+                 model_identifier='model'):
         self.model = model
         self.actual_data = actual_data
-        self.predicted_data = predicted_data
+        self.predicted_data = predicted_data if (predicted_data is not None) and (x is None) else model.model.predict(x)
         self.model_identifier = model_identifier
         self.report_DataFrame = self.__generate_report()
 

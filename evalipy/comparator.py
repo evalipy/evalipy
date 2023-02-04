@@ -13,7 +13,7 @@ class Comparator:
 
     def __res(self):
         return pd.concat(
-            [Report(i, self.actual_data, i.model.predict(self.x), i.model_type).report_DataFrame for i in self.models
+            [Report(model=i, actual_data=self.actual_data, predicted_data=i.model.predict(self.x), model_identifier=i.model_type).report_DataFrame for i in self.models
              ],
             axis=1,
             ignore_index=False)
