@@ -1,20 +1,20 @@
 import pandas as pd
+from numpy import ndarray
+from .model import Model
 from .report import Report
 
 
 class Comparator:
-    def __init__(self, model_A, model_B, actual_data, predicted_data_A, predicted_data_B) -> None:
-        self.model_A = model_A
-        self.model_B = model_B
+    def __init__(self, models: list[Model], x: ndarray, actual_data: ndarray) -> None:
+        self.models = models
         self.actual_data = actual_data
-        self.predicted_data_A = predicted_data_A
-        self.predicted_data_B = predicted_data_B
+        self.x = x
         self.result = self.__res()
 
     def __res(self):
         return pd.concat(
-            [Report(self.model_A, self.actual_data, self.predicted_data_A, model_identifier='model A').report_DataFrame,
-             Report(self.model_B, self.actual_data, self.predicted_data_B, model_identifier='model B').report_DataFrame],
+            [Report(i, self.actual_data, i.model.predict(self.x), i.model_type).report_DataFrame for i in self.models
+             ],
             axis=1,
             ignore_index=False)
 

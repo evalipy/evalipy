@@ -6,7 +6,7 @@ from .model import Model
 
 
 class Report:
-    def __init__(self, model: Model, actual_data: np.ndarray, predicted_data: np.ndarray, model_identifier='model 1'):
+    def __init__(self, model: Model, actual_data: np.ndarray, predicted_data: np.ndarray, model_identifier='model'):
         self.model = model
         self.actual_data = actual_data
         self.predicted_data = predicted_data

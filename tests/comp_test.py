@@ -19,5 +19,5 @@ print(model_2)
 print(report.Report(model=model.Model(clf), actual_data=y, predicted_data=y_pred_1))
 print(report.Report(model=model.Model(tree), actual_data=y, predicted_data=y_pred_2))
 
-comparator = comparator.Comparator(model_1, model_2, y, y_pred_1, y_pred_2)
+comparator = comparator.Comparator([model_1, model_2], X, y)
 print(comparator)

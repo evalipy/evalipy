@@ -6,7 +6,8 @@ class Model:
     def __init__(self, model, model_type=None, path=None) -> None:
         self.path = path
         self.model = self.load_model() if model is None else model
-        self.model_type = type(self.model)
+        self.model_type = model_type if model_type is not None else str(type(self.model)).replace("'>", '').split('.')[
+            -1]
         self.parameters = self.model.get_params()
 
         pass
