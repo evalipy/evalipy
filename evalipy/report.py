@@ -15,18 +15,13 @@ class Report:
 
     def __generate_report(self):
         return pd.DataFrame.from_dict(
-            {"Mean Squared Error(MSE)": Metrics.MSE(self.actual_data, self.predicted_data),
-             "Mean Absolute Error(MAE)": Metrics.MAE(self.actual_data, self.predicted_data),
-             "R-Squared(R2)": Metrics.R2(self.actual_data, self.predicted_data),
-             "Root Mean Square Error(RMSE)": Metrics.RMSE(self.actual_data, self.predicted_data),
-             "Root Relative Squared Error(RRSE)": Metrics.RRSE(self.actual_data, self.predicted_data),
-             "Relative Absolute Error(RAE)": Metrics.RAE(self.actual_data, self.predicted_data),
-             }, orient='index', columns=[f'{self.model_identifier}'])
+            {
+                x: Metrics.ALL_METRICS[x](self.actual_data, self.predicted_data) for x in Metrics.ALL_METRICS.keys()
+
+            }, orient='index', columns=[f'{self.model_identifier}'])
 
     def __str__(self) -> str:
         return self.report.__repr__()
 
     def __repr__(self) -> str:
         return self.report.__repr__()
-
-

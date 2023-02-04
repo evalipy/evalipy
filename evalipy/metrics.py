@@ -34,3 +34,10 @@ class Metrics:
     @staticmethod
     def RAE(y_true, y_pred):
         return np.sum(np.abs(y_true - y_pred)) / (np.sum(np.abs(y_true - np.mean(y_true))) + Metrics.EPSILON)
+
+    ALL_METRICS = {"Mean Squared Error(MSE)": MSE,
+                   "Mean Absolute Error(MAE)": MAE,
+                   "R-Squared(R2)": R2,
+                   "Root Mean Square Error(RMSE)": RMSE,
+                   "Root Relative Squared Error(RRSE)": RRSE,
+                   "Relative Absolute Error(RAE)": RAE}
