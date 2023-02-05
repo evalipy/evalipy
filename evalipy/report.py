@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from .metrics import Metrics
+from .metrics import RegressionMetrics, ClassificationMetrics
 from .model import Model
 
 
@@ -15,11 +15,23 @@ class Report:
         self.report_DataFrame = self.__generate_report()
 
     def __generate_report(self):
-        return pd.DataFrame.from_dict(
-            {
-                x: Metrics.ALL_METRICS[x](self.actual_data, self.predicted_data) for x in Metrics.ALL_METRICS.keys()
+        kind = self.model.raw_type.lower().find("regress")
+        match kind:
+            case -1:
+                return pd.DataFrame.from_dict(
+                    {
+                        x: ClassificationMetrics.ALL_CLASSIFICATION_METRICS[x](self.actual_data, self.predicted_data)
+                        for x in
+                        ClassificationMetrics.ALL_CLASSIFICATION_METRICS.keys()
 
-            }, orient='index', columns=[f'{self.model_identifier}'])
+                    }, orient='index', columns=[f'{self.model_identifier}'])
+            case _:
+                return pd.DataFrame.from_dict(
+                    {
+                        x: RegressionMetrics.ALL_REGRESSION_METRICS[x](self.actual_data, self.predicted_data) for x in
+                        RegressionMetrics.ALL_REGRESSION_METRICS.keys()
+
+                    }, orient='index', columns=[f'{self.model_identifier}'])
 
     def __str__(self) -> str:
         return self.report_DataFrame.__repr__()

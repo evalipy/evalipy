@@ -8,6 +8,7 @@ class Model:
         self.model = self.load_model() if model is None else model
         self.model_type = model_type if model_type is not None else str(type(self.model)).replace("'>", '').split('.')[
             -1]
+        self.raw_type = str(type(self.model))
         self.parameters = self.model.get_params()
 
         pass
