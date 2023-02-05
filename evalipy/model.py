@@ -24,11 +24,17 @@ class Model:
                 f"type:{str(self.model_type)} "
                 f"parameters:{str(self.parameters)}"
                 )
-        pass
 
     def load_model(self) -> object:
+        # try with pickle
         try:
             model = pickle.load(self.path)
             return model
         except Exception as ex:
-            print(ex)
+            print(f"Exception occured:{ex}\nTrying with joblib library:")
+            # try with joblib
+            try:
+                model = load(self.path)
+                return model
+            except Exception as ex:
+                print(ex)
