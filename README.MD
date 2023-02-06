@@ -7,7 +7,7 @@ The project was started in 2023. It's a package for evaluating different machine
   
 It's currently maintained by me :)
 
-### Dependencies
+## Dependencies
 * Python (>= 3.5)
 * NumPy (>= 1.17.3)
 * joblib (>= 1.1.1)
@@ -17,23 +17,23 @@ It's currently maintained by me :)
 * scipy (>= 1.10.0)
 * seaborn (>= 0.12.2)
 
-### Installation
+## Installation
 ```
 pip install evalipy
 ```
 
 
-### Usage
-#### Import
+## Usage
+### Import
 ```python
 from evalipy import *
 ```
-#### Report
+### Report
 ```python
 r = report.Report(model=model.Model(clf), actual_data=y, predicted_data=y_pred_1)
 *(optional)* print(r)
 ```
-#### Compare
+### Compare
 ```python
 ...
 tree_model.fit(X, y)
@@ -45,5 +45,5 @@ print(comparator)
 ```
 
 
-### Authors
+## Authors
 * **MR-EIGHT** (Mehrdad Heshmat)

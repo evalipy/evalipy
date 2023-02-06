@@ -6,6 +6,10 @@ from .model import Model
 
 
 class Report:
+    """
+    Report class is used to generate reports currently based on metrics module.
+    """
+
     def __init__(self, model: Model, actual_data: np.ndarray, predicted_data: np.ndarray, x=None,
                  model_identifier='model'):
         self.model = model

@@ -5,6 +5,11 @@ from .report import Report
 
 
 class Comparator:
+    """
+    Comparator class gets a list of models, training data x an a numpy array, and true data.
+    Returns the comparrison between the provided models.
+    """
+
     def __init__(self, models: list[Model], x: ndarray, actual_data: ndarray) -> None:
         self.models = [Model.to_model(i) for i in models]
         self.actual_data = actual_data

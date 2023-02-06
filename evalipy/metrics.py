@@ -2,6 +2,11 @@ import numpy as np
 
 
 class RegressionMetrics:
+    """
+    Regression metrics class provides different metrics for assessing the regression model.
+    Functions in this class are static and can be used independently.
+    """
+
     EPSILON = 1e-10
 
     def __init__(self) -> None:
@@ -61,6 +66,11 @@ class RegressionMetrics:
 
 
 class ClassificationMetrics:
+    """
+    Classification metrics class provides different metrics for assessing the classification model.
+    Functions in this class are static and can be used independently.
+    """
+
     def __init__(self):
         pass
 

@@ -3,6 +3,10 @@ from joblib import load
 
 
 class Model:
+    """
+    Model class is used inside the package to import the models and store required parameters it repective objects.
+    """
+
     def __init__(self, model, model_type=None, path=None) -> None:
         self.path = path
         self.model = self.load_model() if model is None else model
