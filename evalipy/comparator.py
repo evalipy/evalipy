@@ -6,7 +6,7 @@ from .report import Report
 
 class Comparator:
     """
-    Comparator class gets a list of models, training data x an a numpy array, and true data.
+    Comparator class gets a list of models, testing data x an a numpy array, and true data.
     Returns the comparrison between the provided models.
     """
 
