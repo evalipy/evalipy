@@ -93,9 +93,13 @@ class ClassificationMetrics:
         return cm['tp'] / (cm['tp'] + cm['fp'])
 
     @staticmethod
-    def reacll(y_true, y_pred, positive=1, negative=0):
+    def recall(y_true, y_pred, positive=1, negative=0):
         cm = ClassificationMetrics.confusion_matrix(y_true, y_pred, positive, negative)
         return cm['tp'] / (cm['tp'] + cm['fn'])
+
+    @staticmethod
+    def sensetivity(y_true, y_pred, positive=1, negative=0):
+        return ClassificationMetrics.recall(y_true, y_pred, positive, negative)
 
     @staticmethod
     def specificity(y_true, y_pred, positive=1, negative=0):
@@ -116,13 +120,13 @@ class ClassificationMetrics:
     @staticmethod
     def f1_score(y_true, y_pred, positive=1, negative=0):
         return 2 * (ClassificationMetrics.precision(y_true, y_pred, positive, negative) * (
-            ClassificationMetrics.reacll(y_true, y_pred, positive, negative)) / (
+            ClassificationMetrics.recall(y_true, y_pred, positive, negative)) / (
                             ClassificationMetrics.precision(y_true, y_pred, positive, negative) + (
-                        ClassificationMetrics.reacll(y_true, y_pred, positive, negative))))
+                        ClassificationMetrics.recall(y_true, y_pred, positive, negative))))
 
     @staticmethod
     def balanced_accuracy(y_true, y_pred, positive=1, negative=0):
-        return (ClassificationMetrics.reacll(y_true, y_pred, positive, negative) + ClassificationMetrics.specificity(
+        return (ClassificationMetrics.recall(y_true, y_pred, positive, negative) + ClassificationMetrics.specificity(
             y_true, y_pred, positive, negative)) / 2
 
     @staticmethod
@@ -131,4 +135,15 @@ class ClassificationMetrics:
         return (cm['tp'] * cm['tn'] - cm['fp'] * cm['fn']) / sqrt(
             (cm['tp'] + cm['fp']) * (cm['tp'] + cm['fn']) * (cm['tn'] + cm['fp']) * (cm['tn'] + cm['fn']))
 
-    ALL_CLASSIFICATION_METRICS = {'accuracy': accuracy}
+    ALL_CLASSIFICATION_METRICS = {'accuracy': accuracy,
+                                  # 'confusion_matrix': confusion_matrix,
+                                  'precision': precision,
+                                  'recall': recall,
+                                  'sensetivity': sensetivity,
+                                  'specificity': specificity,
+                                  'npv': npv,
+                                  'accuracy_wcf': accuracy_wcf,
+                                  'f1-score': f1_score,
+                                  'balanced_accuracy': balanced_accuracy,
+                                  'MCC': MCC
+                                  }
