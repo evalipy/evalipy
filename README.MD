@@ -2,7 +2,7 @@
 <br>
 
 
-<div style="text-align: center; align=center;">
+<p align="center">
 <a href="https://pypi.org/project/evalipy/" target="_blank">
 <img src="https://img.shields.io/badge/pypi%20package-v0.0.5-green">
 </a>
@@ -16,7 +16,7 @@
 <a href="https://pypi.org/project/evalipy/" target="_blank">
 <img src=https://static.pepy.tech/personalized-badge/evalipy?period=total&units=international_system&left_color=black&right_color=blue&left_text=Downloads>
 </a>
-</div>  
+</p>  
 
 <br>
 
