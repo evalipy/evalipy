@@ -1,4 +1,5 @@
 import numpy as np
+from math import sqrt
 
 
 class RegressionMetrics:
@@ -86,7 +87,48 @@ class ClassificationMetrics:
         fn = np.sum(np.logical_and(y_pred == negative, y_true == positive))
         return {"tp": tp, "tn": tn, "fp": fp, "fn": fn}
 
+    @staticmethod
+    def precision(y_true, y_pred, positive=1, negative=0):
+        cm = ClassificationMetrics.confusion_matrix(y_true, y_pred, positive, negative)
+        return cm['tp'] / (cm['tp'] + cm['fp'])
 
+    @staticmethod
+    def reacll(y_true, y_pred, positive=1, negative=0):
+        cm = ClassificationMetrics.confusion_matrix(y_true, y_pred, positive, negative)
+        return cm['tp'] / (cm['tp'] + cm['fn'])
 
+    @staticmethod
+    def specificity(y_true, y_pred, positive=1, negative=0):
+        cm = ClassificationMetrics.confusion_matrix(y_true, y_pred, positive, negative)
+        return cm['tn'] / (cm['tn'] + cm['fp'])
+
+    @staticmethod
+    def npv(y_true, y_pred, positive=1, negative=0):
+        cm = ClassificationMetrics.confusion_matrix(y_true, y_pred, positive, negative)
+        return cm['tn'] / (cm['tn'] + cm['fn'])
+
+    @staticmethod
+    def accuracy_wcf(y_true, y_pred, positive=1, negative=0):
+        # accuracy with confusion matrix
+        cm = ClassificationMetrics.confusion_matrix(y_true, y_pred, positive, negative)
+        return (cm['tp'] + cm['tn']) / (cm['fp'] + cm['tp'] + cm['tn'] + cm['fn'])
+
+    @staticmethod
+    def f1_score(y_true, y_pred, positive=1, negative=0):
+        return 2 * (ClassificationMetrics.precision(y_true, y_pred, positive, negative) * (
+            ClassificationMetrics.reacll(y_true, y_pred, positive, negative)) / (
+                            ClassificationMetrics.precision(y_true, y_pred, positive, negative) + (
+                        ClassificationMetrics.reacll(y_true, y_pred, positive, negative))))
+
+    @staticmethod
+    def balanced_accuracy(y_true, y_pred, positive=1, negative=0):
+        return (ClassificationMetrics.reacll(y_true, y_pred, positive, negative) + ClassificationMetrics.specificity(
+            y_true, y_pred, positive, negative)) / 2
+
+    @staticmethod
+    def MCC(y_true, y_pred, positive=1, negative=0):
+        cm = ClassificationMetrics.confusion_matrix(y_true, y_pred, positive, negative)
+        return (cm['tp'] * cm['tn'] - cm['fp'] * cm['fn']) / sqrt(
+            (cm['tp'] + cm['fp']) * (cm['tp'] + cm['fn']) * (cm['tn'] + cm['fp']) * (cm['tn'] + cm['fn']))
 
     ALL_CLASSIFICATION_METRICS = {'accuracy': accuracy}
