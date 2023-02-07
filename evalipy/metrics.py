@@ -78,4 +78,15 @@ class ClassificationMetrics:
     def accuracy(y_true, y_pred):
         return np.mean(y_true == y_pred)
 
+    @staticmethod
+    def confusion_matrix(y_true, y_pred, positive=1, negative=0):
+        tp = np.sum(np.logical_and(y_pred == positive, y_true == positive))
+        tn = np.sum(np.logical_and(y_pred == negative, y_true == negative))
+        fp = np.sum(np.logical_and(y_pred == positive, y_true == negative))
+        fn = np.sum(np.logical_and(y_pred == negative, y_true == positive))
+        return {"tp": tp, "tn": tn, "fp": fp, "fn": fn}
+
+
+
+
     ALL_CLASSIFICATION_METRICS = {'accuracy': accuracy}
