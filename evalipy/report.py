@@ -19,22 +19,20 @@ class Report:
 
     def __generate_report(self):
         kind = self.model.raw_type.lower().find("regress")
-        match kind:
-            case -1:
-                return pd.DataFrame.from_dict(
-                    {
-                        x: ClassificationMetrics.ALL_CLASSIFICATION_METRICS[x](self.actual_data, self.predicted_data)
-                        for x in
-                        ClassificationMetrics.ALL_CLASSIFICATION_METRICS.keys()
 
-                    }, orient='index', columns=[f'{self.model_identifier}'])
-            case _:
-                return pd.DataFrame.from_dict(
-                    {
-                        x: RegressionMetrics.ALL_REGRESSION_METRICS[x](self.actual_data, self.predicted_data) for x in
-                        RegressionMetrics.ALL_REGRESSION_METRICS.keys()
-
-                    }, orient='index', columns=[f'{self.model_identifier}'])
+        if kind == -1:
+            return pd.DataFrame.from_dict(
+                {
+                    x: ClassificationMetrics.ALL_CLASSIFICATION_METRICS[x](self.actual_data, self.predicted_data)
+                    for x in
+                    ClassificationMetrics.ALL_CLASSIFICATION_METRICS.keys()
+                }, orient='index', columns=[f'{self.model_identifier}'])
+        else:
+            return pd.DataFrame.from_dict(
+                {
+                    x: RegressionMetrics.ALL_REGRESSION_METRICS[x](self.actual_data, self.predicted_data) for x in
+                    RegressionMetrics.ALL_REGRESSION_METRICS.keys()
+                }, orient='index', columns=[f'{self.model_identifier}'])
 
     def __str__(self) -> str:
         return self.report_DataFrame.__repr__()
